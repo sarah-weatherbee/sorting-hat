@@ -1,5 +1,6 @@
 const students = [];
 const houses = ["Ravenclaw", "Hufflepuff", "Gryffindor", "Slytherin"];
+let studentCounter = 1;
 
 const printToDom = (divId, textToPrint) => {
     const selectedDiv = document.getElementById(divId);
@@ -71,9 +72,12 @@ const addStudent = () => {
     const newStudent = {
         name: studentNameInput,
         house: studentHouse,
+        studentId: `student${studentCounter}`
     };
     students.push(newStudent);
+    studentCounter++
     drawStudents(students);
+
 };
 
 const drawStudents = (merp) => {
@@ -84,27 +88,45 @@ const drawStudents = (merp) => {
         domString +=     `<div class="card-body">`;
         domString += `<h3>${student.name}</h3>`;
         domString += `<h4>${student.house}</h4>`;
-        domString +=  `<a href="#" class="btn btn-primary id="delete-button">Expel</a>`
+        domString +=  `<button class="btn btn-primary deleteBtn" id=${student.studentId}>Expel</button>`
         domString += `</div>`;
         domString += `</div>`;
         domString += `</div>`;
     })
 printToDom("student-container", domString);
+console.log(domString);
+const deleteButtons = document.getElementsByClassName("deleteBtn");
+for(i=0; i < deleteButtons.length; i++) {
+    deleteButtons[i].addEventListener("click", removeStudent);
+}
+
+
 };
+
+const removeStudent = (e) => {
+
+    const buttonClickOnObj = e.target.id;
+    
+    students.forEach((student,index) => {
+        if(student.studentId === buttonClickOnObj) {
+            students.splice(index,1);
+        }
+     })
+    
+    drawStudents(students)
+}
 
 const buttonEvents = () => {
     document.getElementById("started-button").addEventListener("click", buildForm);
-    
     //Make an event listener for the click on the sort student button.
     //The listener will call the addStudent function. 
-
 };
 
 const init = () => {
     
     tronBuilder();
     buttonEvents();
-    drawStudents(students)
+   // drawStudents(students)
  
    
    
