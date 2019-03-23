@@ -67,9 +67,22 @@ const addStudent = () => {
 
     let studentHouse = getHouse();
     console.log(studentHouse);
+
+    const newStudent = {
+        name: studentNameInput,
+        house: studentHouse,
+    };
+    students.push(newStudent);
+    drawStudents(students);
 };
 
-
+const drawStudents = (merp) => {
+    let domString = '';
+    merp.forEach((student) => {
+        domString += `<h2>${student.name}</h2>`;
+    })
+printToDom("student-container", domString);
+};
 
 const buttonEvents = () => {
     document.getElementById("started-button").addEventListener("click", buildForm);
@@ -83,6 +96,7 @@ const init = () => {
     
     tronBuilder();
     buttonEvents();
+    drawStudents(students)
  
    
    
