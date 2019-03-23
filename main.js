@@ -41,7 +41,7 @@ const getHouse = () => {
    
    //The gitHouse function will contain an array with 4 houses called houses.
 
-   let randomNumber = Math.floor(Math.random() * 4);
+   let randomNumber = Math.floor(Math.random() * houses.length);
    // Math.floor((Math.random() * 10) + 1);
 
    let houseIndex = randomNumber;
@@ -79,7 +79,15 @@ const addStudent = () => {
 const drawStudents = (merp) => {
     let domString = '';
     merp.forEach((student) => {
-        domString += `<h2>${student.name}</h2>`;
+        domString += `<div class="col-4 product">`;
+        domString += `<div class="card">`;
+        domString +=     `<div class="card-body">`;
+        domString += `<h3>${student.name}</h3>`;
+        domString += `<h4>${student.house}</h4>`;
+        domString +=  `<a href="#" class="btn btn-primary id="delete-button">Expel</a>`
+        domString += `</div>`;
+        domString += `</div>`;
+        domString += `</div>`;
     })
 printToDom("student-container", domString);
 };
