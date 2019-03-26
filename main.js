@@ -24,6 +24,7 @@ const tronBuilder = () => {
     };
 
 const buildForm = () => {
+    
     let domString = '';
         domString += `<form>`;
         domString +=    `<div class="form-group">`;
@@ -39,7 +40,7 @@ const buildForm = () => {
     };
  
 const getHouse = () => {
-   
+    
    //The gitHouse function will contain an array with 4 houses called houses.
 
    let randomNumber = Math.floor(Math.random() * houses.length);
@@ -55,7 +56,8 @@ const getHouse = () => {
 
 };
 
-const addStudent = () => {
+const addStudent = (e) => {
+    e.preventDefault();
     // -->addStudent will take a name from the name input field and getHouse().
     // (So instead of name as the parameter, shouldn't it take "exampleInputName1"? because
     //that's the id for the name input field.)
